@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up by Austine</title> 
+    <link rel="stylesheet" href="SignUpStyle.css"> 
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .error-message {
+            color: red;
+            font-size: 0.8em;
+            margin-top: -10px;
+            margin-bottom: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="header"> 
+        <nav class="navbar"> 
+            <a href="index.html">Home</a> 
+            <a href="#">About</a> 
+            <a href="recipe_feed.html">Recipes</a> 
+            <a href="login.html">Log In</a> 
+        </nav> 
+ 
+        <form action="#" class="search-bar"> 
+            <input type="text" placeholder="Search"> 
+            <button type="submit"><i class='bx bx-search-alt'></i></button> 
+        </form> 
+    </header> 
+
+    <div class="contain">
+        <div class="signupbox" id="signupbox">
+            <form action="#">
+                <h2>Sign Up</h2>
+
+                <div class="input-box"> 
+                    <span class="error-message" id="FnameError"></span>
+                    <input type="text" id="fname" > 
+                    <label>First Name</label> 
+                </div> 
+
+                <div class="input-box"> 
+                    <span class="error-message" id="LnameError"></span>
+                    <input type="text" id="lname" > 
+                    <label>Last Name</label> 
+                </div>
+
+                <div class="input-box"> 
+                    <span class="error-message" id="emailError"></span>
+                    <input type="email" id="email" > 
+                    <label>Email</label> 
+                </div> 
+
+                <div class="input-box"> 
+                    <span class="error-message" id="passwordError"></span>
+                    <input type="password" id="password" > 
+                    <label>Password</label> 
+                </div> 
+
+                <div class="input-box"> 
+                    <span class="error-message" id="confirmPasswordError"></span>
+                    <input type="password" id="confirmPassword" > 
+                    <label>Confirm Password</label> 
+                </div> 
+
+                <button type="submit" class="button">Register</button> 
+
+                <div class="signin"> 
+                    <p>Already have an account? <a href="login.html" class="signin_link">Sign In</a></p> 
+                </div> 
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signupbox').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email');
+            const fname = document.getElementById('fname');
+            const lname = document.getElementById('lname');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+            const fnameError = document.getElementById("FnameError");
+            const lnameError = document.getElementById("LnameError");
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+            // Reset error messages
+            [fnameError, lnameError, emailError, passwordError, confirmPasswordError].forEach(error => {
+                error.style.display = 'none';
+            });
+
+            let isValid = true;
+
+            // First name validation
+            if (fname.value.trim() === '') {
+                fnameError.textContent = 'First name is required.';
+                fnameError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Last name validation
+            if (lname.value.trim() === '') {
+                lnameError.textContent = 'Last name is required.';
+                lnameError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                emailError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Password validation
+            const passwordRegex = /^(?=.*[A-Z])(?=.*\d{3,})(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+            if (!passwordRegex.test(password.value)) {
+                passwordError.textContent = 'Password must be at least 8 characters long, contain at least one uppercase letter, at least three digits, and at least one special character.';
+                passwordError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Confirm password validation
+            if (password.value !== confirmPassword.value) {
+                confirmPasswordError.textContent = 'Passwords do not match.';
+                confirmPasswordError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // If all validations pass, redirect to the recipes page
+                window.location.href = 'recipes.html';
+            }
+        });
+    </script>
+
+</body>
+</html>
