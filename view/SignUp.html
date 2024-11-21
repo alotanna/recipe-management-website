@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmoNajia Recipe Platform - Sign Up</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3259ad;
+            --primary-dark: #142355;
+            --secondary: #f97316;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --background: #f8fafc;
+            --error: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1b4a96 0%, #0e2672 100%);
+        }
+
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-family: 'Sedgwick Ave Display', cursive;
+            color: var(--white);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 2rem;
+        }
+
+        .signup-container {
+            width: 100%;
+            max-width: 1200px;
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-section {
+            background: linear-gradient(135deg, #2964c2 0%, #1c3175 100%);
+            padding: 4rem;
+            color: var(--white);
+            width: 45%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .welcome-text {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        .signup-section {
+            flex: 1;
+            padding: 4rem;
+            background: var(--white);
+        }
+
+        .signup-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-title {
+            color: var(--text-dark);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--background);
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-label {
+            position: absolute;
+            top: -0.5rem;
+            left: 1rem;
+            padding: 0 0.5rem;
+            background: var(--white);
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        .signup-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .signup-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .login-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .welcome-section {
+                padding: 3rem;
+            }
+            
+            .signup-section {
+                padding: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .signup-container {
+                flex-direction: column;
+                margin: 1rem;
+            }
+
+            .welcome-section {
+                width: 100%;
+                padding: 2rem;
+            }
+
+            .signup-section {
+                padding: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-section,
+            .signup-section {
+                padding: 1.5rem;
+            }
+
+            .welcome-title {
+                font-size: 2rem;
+            }
+
+            .form-title {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="recipe_feed.html">Recipes</a>
+                <a href="#">Contact</a>
+                <a href="login.html">Sign In</a>
+            </nav>
+        </header>
+
+        <main class="main-container">
+            <div class="signup-container">
+                <div class="welcome-section">
+                    <div class="welcome-content">
+                        <h1 class="welcome-title">Join Our Culinary Community!</h1>
+                        <p class="welcome-text">Create an account to share your recipes, save your favorites, and connect with food lovers from around the world.</p>
+                        <div class="social-links">
+                            <a href="#"><i class='bx bxl-instagram'></i></a>
+                            <a href="#"><i class='bx bxl-twitter'></i></a>
+                            <a href="#"><i class='bx bxl-facebook'></i></a>
+                            <a href="#"><i class='bx bxl-youtube'></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="signup-section">
+                    <form class="signup-form" action="../actions/register.php" method="POST" id="signupForm">
+                        <h2 class="form-title">Create Account</h2>
+                        
+                        <div class="form-group">
+                            <input type="text" id="fname" name="fname" class="form-input" placeholder="Enter your first name" required>
+                            <label for="fname" class="form-label">First Name</label>
+                            <span class="error-message" id="FnameError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" id="lname" name="lname" class="form-input" placeholder="Enter your last name" required>
+                            <label for="lname" class="form-label">Last Name</label>
+                            <span class="error-message" id="LnameError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+                            <label for="email" class="form-label">Email</label>
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                            <label for="password" class="form-label">Password</label>
+                            <span class="error-message" id="passwordError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" placeholder="Confirm your password" required>
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <span class="error-message" id="confirmPasswordError"></span>
+                        </div>
+
+                        <button type="submit" class="signup-button">Create Account</button>
+
+                        <div class="login-link">
+                            <p>Already have an account? <a href="login.html">Sign In</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/signup.js"></script>
+</body>
+</html>
